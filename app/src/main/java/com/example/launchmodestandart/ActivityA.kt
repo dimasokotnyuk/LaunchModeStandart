@@ -24,6 +24,5 @@ class ActivityA : AppCompatActivity() {
         buttonBack.setOnClickListener() {
             finish()
         }
-312
     }
 }
