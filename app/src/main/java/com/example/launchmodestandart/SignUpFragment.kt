@@ -1,5 +1,6 @@
 package com.example.launchmodestandart
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -20,9 +21,19 @@ class SignUpFragment : Fragment(R.layout.fragment_navigation_3) {
         }
     }
 
+    private var callback: SignUpFragmentCallback? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        callback = activity as? SignUpFragmentCallback
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tvName.text = arguments?.getString(KEY_NAME)
+        tvName.setOnClickListener {
+            callback?.restoreFragments()
+        }
         view.setBackgroundColor(Random.nextInt())
     }
 }
