@@ -1,68 +1,38 @@
 package com.example.launchmodestandart
 
 import android.os.Bundle
-import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_a.*
 
-class ActivityA : AppCompatActivity() {
+class ActivityA : AppCompatActivity(), EnterNameFragmentCallback, EnterAvatarFragmentCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_a)
-
-        Handler().postDelayed({
-            supportFragmentManager.apply {
-                beginTransaction().apply {
-                    add(
-                        container.id,
-                        SimpleFragment.newInstance("Test Fragment 1 ]")
-                    ) //(Fragment 1)
-//                addToBackStack("Fragment1")
-                }.commit()
-            }
-        }, 2000)
-
-        Handler().postDelayed({
-            supportFragmentManager.apply {
-                beginTransaction().apply {
-                    add(
-                        container.id,
-                        SimpleFragment.newInstance("Test Fragment 2")
-                    ) //(Fragment 2)
-                    addToBackStack("Fragment2")
-                }.commit()
-            }
-        }, 4000)
-
-        Handler().postDelayed({
-            supportFragmentManager.apply {
-                beginTransaction().apply {
-                    add(
-                        container.id,
-                        SimpleFragment.newInstance("Test Fragment 3")
-                    ) //(Fragment 2)
-                    addToBackStack("Fragment2")
-                }.commit()
-            }
-        }, 6000)
-
-
-        Handler().postDelayed({
-            finish()
-        }, 8000)
-//
-//
-//        Handler().postDelayed({
-//            onBackPressed()
-//        }, 10000)
-//
-//        Handler().postDelayed({
-//            onBackPressed()
-//        }, 12000)
+        replaceFragment(EnterNameFragment.newInstance(), false)
 
     }
 
-    //add to backstack  1 > 2 > 3 > 4
-    //without backstack
+    override fun showEnterAvatarFragment(name: String) {
+        replaceFragment(EnterAvatarFragment.newInstance(name), true)
+    }
+
+    override fun showSignUpFragment(name: String, avatarPath: String) {
+        replaceFragment(SignUpFragment.newInstance(name, avatarPath), true)
+    }
+    //enter name -> set avatar -> sign up
+
+    private fun replaceFragment(fragment: Fragment, isAddToBackStack: Boolean) {
+
+        supportFragmentManager.apply {
+            beginTransaction().apply {
+                replace(
+                    container.id,
+                    fragment
+                )
+                if (isAddToBackStack) addToBackStack(fragment::class.java.simpleName)
+            }.commit()
+        }
+    }
 }

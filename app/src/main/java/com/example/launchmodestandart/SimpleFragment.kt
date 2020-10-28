@@ -22,14 +22,4 @@ class SimpleFragment : Fragment(R.layout.fragment_test) {
         tvTest.text = arguments?.getString("TEST_KEY")
         view.setBackgroundColor(Random.nextInt())
     }
-
-    override fun onResume() {
-        super.onResume()
-        Log.e(arguments?.getString("TEST_KEY") ?: "", "Сработал онРезюм")
-    }
-
-    override fun onStop() {
-        Log.e(arguments?.getString("TEST_KEY") ?: "", "Сработал онПауз")
-        super.onStop()
-    }
 }
