@@ -13,7 +13,6 @@ class ActivityA : AppCompatActivity(), EnterNameFragmentCallback, EnterAvatarFra
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_a)
         replaceFragment(EnterNameFragment.newInstance(), false)
-
     }
 
     override fun showEnterAvatarFragment(name: String) {
@@ -36,7 +35,6 @@ class ActivityA : AppCompatActivity(), EnterNameFragmentCallback, EnterAvatarFra
     //enter name -> set avatar -> sign up
 
     private fun replaceFragment(fragment: Fragment, isAddToBackStack: Boolean) {
-
         supportFragmentManager.apply {
             beginTransaction().apply {
                 replace(

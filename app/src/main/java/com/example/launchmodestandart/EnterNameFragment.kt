@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_navigation_1.*
+import kotlin.random.Random
 
 class EnterNameFragment : Fragment(R.layout.fragment_navigation_1) {
 
@@ -26,5 +27,6 @@ class EnterNameFragment : Fragment(R.layout.fragment_navigation_1) {
         bNextStep.setOnClickListener {
             callback?.showEnterAvatarFragment(etName.text.toString())
         }
+        view.setBackgroundColor(Random.nextInt())
     }
 }
