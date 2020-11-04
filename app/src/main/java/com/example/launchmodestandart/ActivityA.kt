@@ -4,9 +4,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
+import com.example.launchmodestandart.testrecycler.EnterAvatarFragment
+import com.example.launchmodestandart.testrecycler.EnterAvatarFragmentCallback
 import kotlinx.android.synthetic.main.activity_a.*
 
-class ActivityA : AppCompatActivity(), EnterNameFragmentCallback, EnterAvatarFragmentCallback,
+class ActivityA : AppCompatActivity(), EnterNameFragmentCallback,
+    EnterAvatarFragmentCallback,
     SignUpFragmentCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {

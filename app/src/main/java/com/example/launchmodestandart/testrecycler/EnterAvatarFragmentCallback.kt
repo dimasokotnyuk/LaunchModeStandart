@@ -1,4 +1,4 @@
-package com.example.launchmodestandart
+package com.example.launchmodestandart.testrecycler
 
 interface EnterAvatarFragmentCallback {
 
